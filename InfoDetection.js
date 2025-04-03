@@ -33,11 +33,13 @@ function GetLanguage() {
     return navigator.language
 }
 var locationString = ``
-await GetGeoLocation().then((info) => locationString = `
-Latitude: ${info[0]}<br>
-Longitude: ${info[1]}<br>
-Accuracy: ${info[2]}
-`)
+if (navigator.geolocation) {
+  await GetGeoLocation().then((info) => locationString = `
+    Latitude: ${info[0]}<br>
+    Longitude: ${info[1]}<br>
+    Accuracy: ${info[2]}
+  `)
+}
 var Ip
 await GetIp().then((ipv4) => Ip = ipv4.ip)
 
